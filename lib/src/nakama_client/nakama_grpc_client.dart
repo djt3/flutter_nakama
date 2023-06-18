@@ -880,11 +880,14 @@ class NakamaGrpcClient extends NakamaBaseClient {
     int limit = defaultLimit,
     String? cursor,
   }) async {
-    final res = await _client.listFriends(api.ListFriendsRequest(
-      cursor: cursor,
-      limit: api.Int32Value(value: limit),
-      state: api.Int32Value(value: friendshipState?.index),
-    ));
+    final res = await _client.listFriends(
+      api.ListFriendsRequest(
+        cursor: cursor,
+        limit: api.Int32Value(value: limit),
+        state: api.Int32Value(value: friendshipState?.index),
+      ),
+      options: _getSessionCallOptions(session),
+    );
 
     return model.FriendsList.fromDto(res);
   }
