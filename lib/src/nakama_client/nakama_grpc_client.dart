@@ -867,10 +867,13 @@ class NakamaGrpcClient extends NakamaBaseClient {
     List<String>? usernames,
     List<String>? ids,
   }) async {
-    await _client.addFriends(api.AddFriendsRequest(
-      usernames: usernames,
-      ids: ids,
-    ));
+    await _client.addFriends(
+      api.AddFriendsRequest(
+        usernames: usernames,
+        ids: ids,
+      ),
+      options: _getSessionCallOptions(session),
+    );
   }
 
   @override
