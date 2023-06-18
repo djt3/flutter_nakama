@@ -901,10 +901,13 @@ class NakamaGrpcClient extends NakamaBaseClient {
     List<String>? usernames,
     List<String>? ids,
   }) async {
-    await _client.deleteFriends(api.DeleteFriendsRequest(
-      ids: ids,
-      usernames: usernames,
-    ));
+    await _client.deleteFriends(
+      api.DeleteFriendsRequest(
+        ids: ids,
+        usernames: usernames,
+      ),
+      options: _getSessionCallOptions(session),
+    );
   }
 
   @override
